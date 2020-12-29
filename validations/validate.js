@@ -1,6 +1,7 @@
-const { body } = require('express-validator/check');
+const { body } = require('express-validator');
 
 exports.validate = (method) => {
+  // eslint-disable-next-line default-case
   switch (method) {
     case 'register': {
       return [
