@@ -1,9 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const AppMiddlewares = require('./middleware/appMiddleware');
+const routes = require('./routes/index');
 
 dotenv.config();
 
@@ -14,12 +15,8 @@ mongoose.connect(
   () => console.log('DB connected')
 );
 
-// Routes
-const routes = require('./routes/index');
-
-// Middleware
-bodyParser.urlencoded({ extended: false });
-app.use(bodyParser.json());
+// Middleware & routes
+AppMiddlewares(app);
 app.use('/api', routes);
 
 // eslint-disable-next-line no-console
