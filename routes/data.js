@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const verify = require('../auth-guard/verifyToken');
+const dataController = require('../controllers/dataController');
 
-router.get('/', verify, async (req, res) => {
-  res.status(200).send(req.user);
-});
+router.get('/', verify, dataController.data);
 
 module.exports = router;
